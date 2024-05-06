@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	define "github.com/TencentBlueKing/bk-plugin-client-go/core/define"
-	"github.com/TencentBlueKing/bk-plugin-client-go/core/utils"
 	"io"
 	"net/http"
+
+	define "github.com/TencentBlueKing/bk-plugin-client-go/core/define"
+	"github.com/TencentBlueKing/bk-plugin-client-go/core/utils"
 )
 
 type Client struct {
@@ -148,7 +149,7 @@ func (client *Client) GetPluginAppDetail() (*define.PluginAppDetail, error) {
 
 	envDetail := deployedStatuses["stag"].(map[string]interface{})
 
-	if !envDetail["deployed"].(bool) {
+	if !envDetail["has_deployed"].(bool) {
 		return nil, fmt.Errorf("模板网关没有注册")
 	}
 
